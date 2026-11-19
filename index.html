@@ -67,7 +67,7 @@ footer{padding:30px 64px;border-top:1px solid var(--line);color:var(--muted);fon
 .js .rv.in{opacity:1;transform:none}
 
 .glow{position:fixed;top:0;left:0;width:500px;height:500px;border-radius:50%;pointer-events:none;z-index:45;background:radial-gradient(circle,rgba(217,164,65,.17),transparent 65%);mix-blend-mode:screen}
-@media(hover:none){.glow{display:none}}
+
 .tk{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;background:#050505}
 .tkt{display:flex;width:max-content;white-space:nowrap;animation:mq 32s linear infinite;font-family:'Bebas Neue',var(--head);font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:.06em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.5)}
 .tkt>*{margin-right:36px}.tkt i{font-style:normal;color:var(--g1);-webkit-text-stroke:0}
@@ -128,6 +128,34 @@ nav{background:linear-gradient(rgba(0,0,0,.35),transparent)}
 .pg{position:absolute;z-index:13;top:calc(var(--tb) - 2px);left:0;right:0;height:2px;background:rgba(255,255,255,.12)}
 .pg i{display:block;height:100%;width:0;background:var(--g1)}
 @media(max-width:1240px){.np{display:none}}
+
+.nr{display:flex;align-items:center;gap:6px}
+.hb{display:none;background:none;border:0;width:40px;height:40px;flex-direction:column;justify-content:center;gap:6px;padding:9px;cursor:pointer}
+.hb span{display:block;height:2px;background:#fff;transition:.3s}
+.hb.x span:nth-child(1){transform:translateY(8px) rotate(45deg)}.hb.x span:nth-child(2){opacity:0}.hb.x span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+@media(max-width:760px){
+.nl{gap:0}.hb{display:flex}
+nav .pill{padding:9px 16px;font-size:13px}
+.links{display:none;position:fixed;top:var(--tb);left:0;right:0;flex-direction:column;gap:20px;padding:22px 24px;background:rgba(0,0,0,.96);border-bottom:1px solid var(--line)}
+.links.open{display:flex}.links a{font-size:16px}
+.slides{top:var(--tb);bottom:auto;height:calc(100vw/2.2)}
+.slides i.on{opacity:1}
+.shade{top:var(--tb);bottom:auto;height:calc(100vw/2.2);background:linear-gradient(to top,rgba(0,0,0,.5),transparent 55%)}
+.hero .hc{justify-content:flex-start;padding-top:calc(var(--tb) + 100vw/2.2 + 52px)}
+h1{font-size:clamp(2.6rem,12.5vw,3.4rem)}
+.vf{display:block;width:22px;height:22px}
+.vf.a,.vf.b2{top:calc(var(--tb) + 12px)}.vf.c,.vf.d{bottom:auto;top:calc(var(--tb) + 100vw/2.2 - 34px)}
+.vf.a,.vf.c{left:12px}.vf.b2,.vf.d{right:12px}
+.np{display:flex;top:calc(var(--tb) + 100vw/2.2 + 12px);left:20px;transform:none;font-size:10px;letter-spacing:.2em}
+.hud{font-size:10px}.hud.r{display:flex;right:20px}
+.sg{gap:34px}
+.card{aspect-ratio:auto;padding:0;justify-content:flex-start;background:#0c0c0c}
+.card::before,.card .sh{display:none}
+.card img{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:2.2/1;display:block}
+.card .pl{top:12px;right:12px;width:40px;height:40px}
+.card h3{padding:14px 16px 0}.card p{padding:2px 16px 16px}
+.sn{bottom:auto;right:12px;top:calc((100vw - 40px)/2.2 - 36px)}
+}
 @keyframes in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes drift{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(-2%,2%)}}
 @media(max-width:760px){nav{padding:16px 20px}.links{display:none}.hc{padding:20vh 20px 110px}.soc{left:20px}section.w{padding:70px 20px}footer{padding:24px 20px}}
@@ -141,7 +169,7 @@ nav{background:linear-gradient(rgba(0,0,0,.35),transparent)}
     <a href="#top" class="brand"><img class="logo" alt="Backer Productions logo" height="40"><span class="wm"><b>BACKER</b><small>PRODUCTIONS</small></span></a>
     <div class="links"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></div>
   </div>
-  <a href="#contact" class="pill">Contact Us</a>
+  <div class="nr"><button class="hb" id="hb" aria-label="Menu"><span></span><span></span><span></span></button><a href="#contact" class="pill">Contact Us</a></div>
 </nav>
 
 <header class="hero" id="top">
@@ -235,6 +263,12 @@ setInterval(function(){var f=Math.floor((performance.now()-t0)*24/1000),s=Math.f
 
 function setNP(i){var k=Object.keys(covers)[i],j=ids.indexOf(k),t=document.getElementById('npt'),g=document.getElementById('pgi');if(j>-1)t.textContent=info[j][0];g.style.transition='none';g.style.width='0';void g.offsetWidth;g.style.transition='width 5s linear';g.style.width='100%'}
 setNP(0);
+
+addEventListener('touchstart',function(e){var t=e.touches[0];mx_=t.clientX;my_=t.clientY},{passive:true});
+addEventListener('touchmove',function(e){var t=e.touches[0];mx_=t.clientX;my_=t.clientY},{passive:true});
+var hb=document.getElementById('hb'),lk=document.querySelector('.links');
+hb.onclick=function(){lk.classList.toggle('open');hb.classList.toggle('x')};
+lk.addEventListener('click',function(){lk.classList.remove('open');hb.classList.remove('x')});
 </script>
 </body>
 </html>
